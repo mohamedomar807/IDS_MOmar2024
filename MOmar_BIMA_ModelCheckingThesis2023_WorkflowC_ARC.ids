@@ -1,0 +1,1261 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_09.xsd">
+    <info>
+        <title>MOmar_BIMA_ModelCheckingThesis2023_WorkflowC</title>
+        <copyright>MohamedOmar_BIMAPlusThesis2023</copyright>
+        <version>V1</version>
+        <description>As part of BIM A+ Thesis Work, this IDS consists of  quality, and information requirements checks of Architectural Models that can be checked aganist IFC project files in any Open BIM software that supports IDS.</description>
+        <author>mohamedahmedomar807@gmail.com</author>
+        <date>2023-08-04</date>
+        <milestone>PZI</milestone>
+    </info>
+    <specifications>
+        <specification name="AR.1.a Ceilings-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Ceilings' Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(STCL|SSCL)-(GB|MS|WD|PS|TI|PI)(_MDF|_ACS|_AQU|_XPS|_EPS|_MNW|_WTR)??-[0-9]*mm" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.1.b Ceilings-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Ceilings are not modeled correctly in Structural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.1.c Ceilings-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Ceilings' Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(STCL|SSCL)-Type[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.1.d Ceilings-Material" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Ceilings' Material has Correct/Wrong Value. Will Fail if Material Property has Wrong Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Material</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-(Beton|Izolacija_Toplotna|Site|Plošča| Jeklo)(-(Armirani|XPS|Mineralna_Volna|Zazelenitev|Mavčnokartonska| Konstrukcijsko))??(-[0-9]*mm)??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.1.e Ceilings-GrossArea" ifcVersion="IFC4" description="PASS/FAIL check to determine if Gross Area Property has value or/has no value . Will Fail if Outer Surface Area Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_CoveringBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>GrossArea</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.1.f Ceilings-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCCOVERING</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>CEILING</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.2.a Doors-FamilyName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Doors' Family Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Family</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(SGLD|DBLD|TRPD|REVD|PASS|RLRD|SNPD|DBPD|OHSD|OHRD)-(Swing|Sliding|Swing_Asim|Swing_Pivot|Sliding_Surface|Sliding_Telescopic|Sliding_Pocket|Double_Acting|Sliding_Bi_Parting|NA)-(Emb|Cor|Cen|NA|Emb_Rvs)-(Full|Glass|Mesh)-??(w_Toplight|w_Sidelight|w_Sidelight_Toplight|w_Vision_Panel|w_Inactive_Leaf|w_Pass_Door)??(-M3-R2[0-5])??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.2.b Doors-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Doors' Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(WD_GL|AL_AL|PL-PL|WD_WD|ST-ST)(-[0-9]*x[0-9]*mm)??(-[A-Za-z0-9])??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.2.c Doors-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Doors are not modeled correctly in Structural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.2.d Doors-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Doors' Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(SGLD|DBLD|TRPD|REVD|PASS|RLRD|SNPD|DBPD|OHSD|OHRD)-Type[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.2.e Doors-Mark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Doors' Marks are not defined . Will Fail if any are missed." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Mark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>        
+        <specification name="AR.2.f Doors-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCDOOR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.a ArchitecturalFloors-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Slabs Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(FLRS|LOAD|LNDG|ROAD|TRRN|ROOF|RFLR|DRPN|RFSL|PVNG|SLTH|FOOT|FLRM|PATH|FLRI|HIBD|CMFL|FNDB|SLED|GRNR)(-(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TI|CT|FO|CO))??((-|_)[0-9]*x(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TI|CT|FO|CO))*?(_PRE|_CLT|_XPS|_EPS|_MNW|_PRQ|_CMP)??(-|_)[0-9]*mm" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.b ArchitecturalFloors-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Slabss are not modeled correctly in Structural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.c ArchitecturalFloors-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Slabs Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(FLRS|LOAD|LNDG|ROAD|TRRN|ROOF|RFLR|DRPN|RFSL|PVNG|SLTH|FOOT|FLRM|PATH|FLRI|HIBD|CMFL|FNDB|SLED|GRNR-Type[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.d ArchitecturalFloors-Material" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Slabs Material has Correct/Wrong Value. Will Fail if Material Property has Wrong Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="0" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Material</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-(Beton|Izolacija_Toplotna|Site|Plošča| Jeklo)(-(Armirani|XPS|Mineralna_Volna|Zazelenitev|Mavčnokartonska| Konstrukcijsko))??(-[0-9]*mm)??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.e ArchitecturalFloors-OuterSurfaceArea" ifcVersion="IFC4" description="PASS/FAIL check to determine if Outer Surface Area Property has value or/has no value . Will Fail if Outer Surface Area Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_SlabBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>OuterSurfaceArea</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.f ArchitecturalFloors-GrossVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Gross Volume Property has value or/has no value . Will Fail if Gross Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_SlabBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>GrossVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.g ArchitecturalFloors-NetVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Net Volume Property has value or/has no value . Will Fail if Net Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_SlabBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.3.h ArchitecturalFloors-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>FLOOR</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.4. a Furniture-FamilyName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Furniture Family Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCFURNITURE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Family</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-Furniture.*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.4. b Furniture-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Furniture Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCFURNITURE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(-[0-9]*x[0-9]*mm)??(-[A-Za-z0-9])??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.4. c Furniture-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Furniture are not modeled correctly in Structural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCFURNITURE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-Furniture" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.4. d Furniture-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Furniture Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCFURNITURE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Za-z]*-Type[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.4. i Furniture-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCFURNITURE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.1.a FinishingStairCase-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Finishing Stair Case Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-STAR(-(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TIT|FO|CO))??((-|_)[0-9]*x(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TI|CT|FO|CO))*?(_PRE|_CLT|_XPS|_EPS|_MNW|_PRQ|_CMP)??(-|_)[0-9]*mm" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.1.b FinishingStairCase-LoadBearing" ifcVersion="IFC4" description="PASS/FAIL check to determine if LoadBearing has the correct value . Will Fail if any are found with wron LoadBearing Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcBoolean" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>Yes</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.1.c FinishingStairCase-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Staircase are not modeled correctly in Finishing Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.1.d FinishingStairCase-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Stair Case Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIR</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.a FinishingStairFlight-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Finishing Stair Case Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-RUN(-(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TI|CT|FO|CO))??((-|_)[0-9]*x(RC|AC|EP|CR|VI|PQ|PV|TX|AS|GR|PT|WC|GV|SC|TR|TI|CT|FO|CO))*?(_PRE|_CLT|_XPS|_EPS|_MNW|_PRQ|_CMP)??(-|_)[0-9]*mm" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.b FinishingStairFlight-LoadBearing" ifcVersion="IFC4" description="PASS/FAIL check to determine if LoadBearing has the correct value . Will Fail if any are found with wron LoadBearing Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcBoolean" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>Yes</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.c FinishingStairFlight-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Stair Flights are not modeled correctly in Finishing Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.d FinishingStairFlight-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Stair Case Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.e FinishingStairFlight-Material" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Finishing Finishing Stair Case Material has Correct/Wrong Value. Will Fail if Material Property has Wrong Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="0" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Material</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-(Beton|Izolacija_Toplotna|Site|Plošča| Jeklo)(-(Armirani|XPS|Mineralna_Volna|Zazelenitev|Mavčnokartonska| Konstrukcijsko))??(-[0-9]*mm)??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.f FinishingStairFlight-GrossVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Gross Volume Property has value or/has no value . Will Fail if Gross Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>GrossVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.g FinishingStairFlight-NetVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Net Volume Property has value or/has no value . Will Fail if Net Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.5.2.h FinishingStairFlight-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCSTAIRFLIGHT</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.a ArchitecturalWalls-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Architectural Walls Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property measure="IfcBoolean" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>No</simpleValue>
+                    </value>
+                </property>                
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(WALL|DRYW|PEDW|PARW|WCOV|WFIN|WINS|CURW|STFC|WFAC|FCOV|CLNW|CLNC|CASC|LUVR)(-(RC|CB|AC|WD|SN|GB|BR|PT|GL|CR|MM|PL|TI|FO|FI|PS|AP|HI|PI|TX))??((-|_)[0-9]*x(RC|CB|AC|WD|SN|GB|BR|PT|GL|CR|MM|PL|TI|FO|FI|PS|AP|HI|PI|TX))*?(_PRE|_CLT|_XPS|_EPS|_MNW|_PIR|_MDF|_ACS|_ACM|_BTM|_STF|_PVC|_AQU|_VIS|_WTR|_HPL)??(-|_)[0-9]*mm" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.b ArchitecturalWalls-LoadBearing" ifcVersion="IFC4" description="PASS/FAIL check to determine if LoadBearing has the correct value . Will Fail if any are found with wron LoadBearing Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcBoolean" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>No</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.c ArchitecturalWalls-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Architectural Walls are not modeled correctly in Architectural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.d ArchitecturalWalls-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any ArchitecturalWalls Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.e ArchitecturalWalls-Material" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Architectural Walls Material has Correct/Wrong Value. Will Fail if Material Property has Wrong Value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="0" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Material</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-(Beton|Izolacija_Toplotna|Site|Plošča| Jeklo)(-(Armirani|XPS|Mineralna_Volna|Zazelenitev|Mavčnokartonska| Konstrukcijsko))??(-[0-9]*mm)??" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.f ArchitecturalWalls-GrossSideArea" ifcVersion="IFC4" description="PASS/FAIL check to determine if Gross Side Area Property has value or/has no value . Will Fail if Gross Side Area Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>GrossSideArea</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.g ArchitecturalWalls-NetSideArea" ifcVersion="IFC4" description="PASS/FAIL check to determine if Net Side Area Property has value or/has no value . Will Fail if Net Side Area Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcAreaMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetSideArea</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.h ArchitecturalWalls-GrossVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Gross Volume Property has value or/has no value . Will Fail if Gross Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>GrossVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.i ArchitecturalWalls-NetVolume" ifcVersion="IFC4" description="PASS/FAIL check to determine if Net Volume Property has value or/has no value . Will Fail if Net Volume Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcVolumeMeasure" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetVolume</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.6.j ArchitecturalWalls-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.7.a Windows-FamilyName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Windows' Family Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Family</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.7.b Windows-TypeName" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Windows' Type Names are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Type</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.7.c Windows-Workset" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Windows are not modeled correctly in Structural Workset. Will Fail if any are found in wrong workset." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Workset</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RP-AR-(Facade|Interior)" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.7.d Windows-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Windows' Type Marks are not following the Company Naming Convention . Will Fail if any are found." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>TypeMark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(SGLD|DBLD|TRPD|REVD|PASS|RLRD|SNPD|DBPD|OHSD|OHRD)-Type[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="AR.7.e Windows-TypeMark" ifcVersion="IFC4" description="PASS/FAIL check to determine if any Windows' Marks are not defined. Will Fail if any are not defined." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>BOS_General</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>Mark</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>        
+        <specification name="AR.7.f Windows-WBSCode" ifcVersion="IFC4" description="PASS/FAIL check to determine if WBS Code Property has value or/has no value . Will Fail if WBS Code Property has no value." minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWINDOW</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcText" minOccurs="1" maxOccurs="unbounded">
+                    <propertySet>
+                        <simpleValue>WBS</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WBSCode</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="WBS.ARC.[0-9]*" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>
